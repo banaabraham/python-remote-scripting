@@ -5,7 +5,7 @@ host = '192.168.43.44'
 port = 4444
 
 script = """
-print("hello")
+print(" world")
 """
 class remote_run:
     def __init__(self,host,port):
@@ -21,12 +21,12 @@ class remote_run:
             res = res[0]
         print (res+"\r") 
 def print_str(s):
-    print (s)
+    print (s,end="")
     
 remote_computer = remote_run("192.168.43.44",4444)
 
 t_1 = threading.Thread(target=remote_computer.send_command, args=(script,))
-t_2 = threading.Thread(target=print_str, args=("world \r",))
+t_2 = threading.Thread(target=print_str, args=("hello",))
 t_1.start()
 t_2.start()
 t_1.join()
